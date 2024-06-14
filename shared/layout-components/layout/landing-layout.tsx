@@ -13,11 +13,11 @@ const Landinglayout = ({children}:any) => {
 
   return (
     <Fragment>
-    <Provider store={store}>
+    {/* <Provider store={store}> */}
         <Landingswitcher />
         {children}
       <div id="responsive-overlay"></div>
-    </Provider>
+    {/* </Provider> */}
   </Fragment>
   )
 }

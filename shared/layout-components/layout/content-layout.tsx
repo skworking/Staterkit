@@ -41,7 +41,7 @@ const ContentLayout = ({ children }:any) => {
   }
   return (
     <Fragment>
-       <Provider store={store}>
+       {/* <Provider store={store}> */}
        <div style={{display: `${lateLoad ? 'block' : 'none'}`}}>
         <Switcher/>
       <div className='page'>
@@ -57,7 +57,7 @@ const ContentLayout = ({ children }:any) => {
       <Backtotop />
         </div>
        
-      </Provider>
+      {/* </Provider> */}
     </Fragment>
 
   )
