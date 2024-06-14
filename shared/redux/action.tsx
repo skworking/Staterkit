@@ -19,4 +19,23 @@ export const ThemeChanger = (value:any) => async (dispatch:any) => {
     });
   };
 
+// Authentication Actions
+export const login = (token: string, username: string) => async (dispatch: (arg0: { type: string; payload: { token: string; username: string; }; }) => void) => {
+  dispatch({
+      type: "LOGIN",
+      payload: { token, username },
+  });
+};
 
+export const logout = () => async (dispatch: (arg0: { type: string; }) => void) => {
+  dispatch({
+      type: "LOGOUT",
+  });
+};
+
+export const checkAuthentication = (isAuth: boolean, token?: string, username?: string) => async (dispatch: (arg0: { type: string; payload: { isAuth: boolean; token?: string; username?: string; }; }) => void) => {
+  dispatch({
+      type: "CHECK_AUTHENTICATION",
+      payload: { isAuth, token, username },
+  });
+};
