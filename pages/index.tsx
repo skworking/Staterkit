@@ -19,10 +19,10 @@ const Firebaselogin = () => {
 
   const [err, setError] = useState("");
   const [data, setData] = useState({
-    email: "",
+    username: "",
     password: ''
   });
-  const { email, password } = data;
+  const { username, password } = data;
   const changeHandler = (e: any) => {
     console.log(e.target.name, e.target.value);
 
@@ -32,33 +32,33 @@ const Firebaselogin = () => {
 
   const Login = async (e: any) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch("/api/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email: data.email }) // Assuming data.email contains the email value
+        body: JSON.stringify({ username: data.username }) // Assuming data.email contains the email value
       });
-  
+
       if (!response.ok) {
         throw new Error('Login failed');
       }
-  
+
       const result = await response.json();
-      sessionStorage.setItem("jwt",result.token)
-      sessionStorage.setItem("user",JSON.stringify(result.tokenObject))
+      sessionStorage.setItem("jwt", result.token)
+      sessionStorage.setItem("user", JSON.stringify(result.tokenObject))
       dispatch(checkAuthentication(true, result.token));
       console.log("res", result);
       RouteChange();
       // Handle success, redirect user or perform other actions
-    } catch (error:any) {
+    } catch (error: any) {
       console.error('Login error:', error.message);
       // Handle error, display message to the user or perform other actions
     }
   };
-  
+
 
   // const Login1 = (_e:any) => {
   //   if (data.email == "adminnextjs@gmail.com" && data.password == "1234567890") {
@@ -118,15 +118,30 @@ const Firebaselogin = () => {
                   <p className="mb-4 text-[#8c9097] dark:text-white/50 opacity-[0.7] font-normal text-center">Welcome back Jhon !</p>
                   <div className="grid grid-cols-12 gap-y-4">
                     <div className="xl:col-span-12 col-span-12">
-                      <label htmlFor="signin-email" className="form-label text-default">Email</label>
-                      <input type="text" name="email" className="form-control form-control-lg w-full !rounded-md" id="email" onChange={changeHandler} value={email} />
+                      <label htmlFor="signin-username" className="form-label text-default">username</label>
+                      <input type="text" name="username" className="form-control form-control-lg w-full !rounded-md" id="username" onChange={changeHandler} value={username} />
+                    </div>
+                    <div className="xl:col-span-12 col-span-12">
+                      <label htmlFor="signup-password" className="form-label text-default">Password</label>
+                      <div className="input-group">
+                        <input type={(passwordshow1) ? 'text' : "password"}
+                          className="form-control form-control-lg !rounded-e-none"
+                          id="signup-password" placeholder="password"
+                          name='password'
+                          value={password}
+                          onChange={changeHandler}
+                        />
+                        <button onClick={() => setpasswordshow1(!passwordshow1)} aria-label="button" type="button" className="ti-btn ti-btn-light !rounded-s-none !mb-0"
+
+                          id="button-addon2"><i className={`${passwordshow1 ? 'ri-eye-line' : 'ri-eye-off-line'} align-middle`}></i></button>
+                      </div>
                     </div>
                     {/* <div className="xl:col-span-12 col-span-12 mb-2">
-                      <label htmlFor="signin-password" className="form-label text-default block">Password<Link href="/components/authentication/reset-password/reset-basic/" className="float-right text-danger">Forget password ?</Link></label>
-                      <div className="input-group">
-                        <input name="password" type={(passwordshow1) ? 'text' : "password"} value={password} onChange={changeHandler} className="form-control form-control-lg !rounded-s-md" id="signin-password" placeholder="password" />
-                        <button onClick={() => setpasswordshow1(!passwordshow1)} aria-label="button" className="ti-btn ti-btn-light !rounded-s-none !mb-0" type="button" id="button-addon2"><i className={`${passwordshow1 ? 'ri-eye-line' : 'ri-eye-off-line'} align-middle`}></i></button>
-                      </div>
+                    <label htmlFor="signin-password" className="form-label text-default block">Password<Link href="/components/authentication/reset-password/reset-basic/" className="float-right text-danger">Forget password ?</Link></label>
+                    <div className="input-group">
+                      <input name="password" type={(passwordshow1) ? 'text' : "password"} value={password} onChange={changeHandler} className="form-control form-control-lg !rounded-s-md" id="signin-password" placeholder="password" />
+                      <button onClick={() => setpasswordshow1(!passwordshow1)} aria-label="button" className="ti-btn ti-btn-light !rounded-s-none !mb-0" type="button" id="button-addon2"><i className={`${passwordshow1 ? 'ri-eye-line' : 'ri-eye-off-line'} align-middle`}></i></button>
+                    </div>
                       <div className="mt-2">
                         <div className="form-check !ps-0">
                           <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
@@ -168,8 +183,8 @@ const Firebaselogin = () => {
                   <p className="mb-4 text-[#8c9097] dark:text-white/50 opacity-[0.7] font-normal text-center">Welcome back Jhon !</p>
                   <div className="grid grid-cols-12 gap-y-4">
                     <div className="xl:col-span-12 col-span-12">
-                      <label htmlFor="signin-email" className="form-label text-default">Email</label>
-                      <input type="email" name="email" className="form-control form-control-lg w-full !rounded-md" id="email" onChange={changeHandler} value={email} placeholder="Email" />
+                      <label htmlFor="signin-username" className="form-label text-default">username</label>
+                      <input type="username" name="username" className="form-control form-control-lg w-full !rounded-md" id="username" onChange={changeHandler} value={username} placeholder="username" />
                     </div>
                     <div className="xl:col-span-12 col-span-12 mb-2">
                       <label htmlFor="signin-password" className="form-label text-default block">Password<Link href="/components/authentication/reset-password/reset-basic/" className="float-right text-danger">Forget password ?</Link></label>

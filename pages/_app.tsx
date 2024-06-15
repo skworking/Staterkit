@@ -5,19 +5,21 @@ import Landinglayout from '@/shared/layout-components/layout/landing-layout';
 import SomeComponent from './myprotected';
 import { Provider } from 'react-redux';
 import store from '@/shared/redux/store';
-
-const layouts: any = {
+import { SessionProvider } from 'next-auth/react';
+const layouts: { [key: string]: React.ComponentType<any> } = {
 
   Contentlayout: ContentLayout,
   Landinglayout: Landinglayout,
   Authenticationlayout: Authenticationlayout,
 
 };
-function MyApp({ Component, pageProps }: any) {
+function MyApp({ Component, pageProps:{session, ...pageProps} }: any) {
 
   const Layout = layouts[Component.layout] || ((pageProps: any) => <Component>{pageProps}</Component>);
 
   return (
+    <SessionProvider session={session}>
+
     <Provider store={store}>
         <Layout>
         <SomeComponent pageProps={pageProps}>
@@ -25,6 +27,7 @@ function MyApp({ Component, pageProps }: any) {
         </SomeComponent>
         </Layout>
     </Provider>
+    </SessionProvider>
   )
 }
 
