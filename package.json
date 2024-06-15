@@ -18,6 +18,8 @@
     "@types/body-parser": "^1.19.5",
     "@types/mongoose": "^5.11.97",
     "apexcharts": "^3.44.2",
+    "axios": "^1.7.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "firebase": "^10.6.0",
@@ -25,6 +27,7 @@
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.1",
     "next": "^14.0.4",
+    "next-auth": "^4.24.7",
     "postcss-cli": "^10.1.0",
     "preline": "^1.9.0",
     "react": "^18.2.0",
@@ -38,10 +41,12 @@
     "redux-thunk": "^2.4.2",
     "sass": "^1.69.5",
     "simplebar-react": "^3.2.4",
-    "tailwind-clip-path": "^1.0.0"
+    "tailwind-clip-path": "^1.0.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/react-color": "^3.0.11",
     "@types/react-table": "^7.7.19",
